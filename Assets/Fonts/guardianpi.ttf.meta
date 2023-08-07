@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 1c1ace412ee7de64e956085e8b8d46d0
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Guardian Pro Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 67d599175e68e0d41a0ee5f87c2f417b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

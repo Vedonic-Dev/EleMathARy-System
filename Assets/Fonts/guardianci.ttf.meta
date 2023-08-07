@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 13c025aff38b4bb4897206cb3790e6f7
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Guardian Condensed Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 86f02d64c8a6c004990f236e2b87e30f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

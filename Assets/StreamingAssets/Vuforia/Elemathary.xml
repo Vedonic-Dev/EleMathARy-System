@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="G3-Q5" size="200.000000 266.666656" />
+    <ImageTarget name="G3-Q4" size="200.000000 266.666656" />
+    <ImageTarget name="G3-Q3" size="200.000000 266.666656" />
+    <ImageTarget name="G3-Q2" size="200.000000 266.666656" />
+    <ImageTarget name="G3-Q1" size="200.000000 266.666656" />
+    <ImageTarget name="G2-Q5" size="200.000000 266.666656" />
+    <ImageTarget name="G2-Q4" size="200.000000 266.666656" />
+    <ImageTarget name="G2-Q3" size="200.000000 185.277771" />
+    <ImageTarget name="G2-Q2" size="200.000000 323.055542" />
+    <ImageTarget name="G2-Q1" size="200.000000 266.666656" />
+    <ImageTarget name="G1-Q5" size="200.000000 266.666656" />
+    <ImageTarget name="G1-Q4" size="200.000000 266.666656" />
+    <ImageTarget name="G1-Q3" size="200.000000 266.666656" />
+    <ImageTarget name="G1-Q2" size="200.000000 266.666656" />
+    <ImageTarget name="G1-Q1" size="200.000000 266.666656" />
+  </Tracking>
+</QCARConfig>

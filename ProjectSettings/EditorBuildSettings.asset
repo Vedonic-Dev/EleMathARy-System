@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SplashScreen.unity
+    guid: 3842dd2f0b9e1df469ed58bac0959d9a
+  - enabled: 1
+    path: Assets/Scenes/FrontPage.unity
+    guid: df6a5470edb62f344bebb4a6c8644829
+  - enabled: 1
+    path: Assets/Scenes/FirebaseAuth.unity
+    guid: ed202c0adcd06124c8fd4895c12ffc5d
+  - enabled: 1
+    path: Assets/Scenes/ChooseGameMode.unity
+    guid: 04f13596259bff54abad7242b412a596
+  - enabled: 1
+    path: Assets/Scenes/UserMenu.unity
+    guid: b5c19add9013098468d8f54f6366e705
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/SimpleSelectGrade.unity
+    guid: d74fb49e932516b409ff943b2ca98783
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G1-Quiz.unity
+    guid: f37f976c328715649ad2efc7789453ac
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G2-Quiz.unity
+    guid: 77a57fc9ed40ec147b46f95ee9bc4f37
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G3-Quiz.unity
+    guid: 549f964df1721c94683477a48b45f353
+  - enabled: 1
+    path: Assets/Scenes/Leaderboard.unity
+    guid: e43ce9a70761b1743acae4f7afcf296a
+  - enabled: 1
+    path: Assets/Scenes/UserProfile.unity
+    guid: c3f561a075d97054b850d7c410668628
+  - enabled: 1
+    path: Assets/Scenes/AboutUs.unity
+    guid: a5df7c860e35f5d438cd9ea7095ddd14
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/ARSelectGrade.unity
+    guid: b64843663436f8a4b8949e55eb54d89c
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G1/G1-ARChooseStage.unity
+    guid: 5784a2b62c49b144ebe8e1c9ce9d3775
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G2/G2-ARChooseStage.unity
+    guid: 8d9bbda13205ccb4386f0103979e7a4c
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G3/G3-ARChooseStage.unity
+    guid: 4b3f09a07d9a8804d9736780fdd2347f
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G1/G1-ARQuiz.unity
+    guid: 3c382c95e62e1434992dff3996a3a6e0
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G2/G2-ARQuiz.unity
+    guid: c1759308a5470cd47ae5478fdb19262b
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G3/G3-ARQuiz.unity
+    guid: 55784d7074f057345ac1a1b2443f02e2
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G1/G1-ARSelectMode.unity
+    guid: f73399e2ccba5e34a94f8e67900be865
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G1/G1-ARChooseLesson.unity
+    guid: e3475b2ca2745a84da84e3dc32f74c7d
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G2/G2-ARSelectMode.unity
+    guid: fa0b5b861bf05f54fb9389be6d169328
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G2/G2-ARChooseLesson.unity
+    guid: 1d2e8bd9e6440d7498e10c24a0086067
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G3/G3-ARSelectMode.unity
+    guid: 00051363f272476458d7610635601db5
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G3/G3-ARChooseLesson.unity
+    guid: 3d538e6de29b8804295937fe9743d96a
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G1/G1-ARLesson.unity
+    guid: 82df3f576353f504bba3448bf5544f73
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G2/G2-ARLesson.unity
+    guid: 533c781ce4eb3e246a2bd24dedf88f1a
+  - enabled: 1
+    path: Assets/Scenes/AdventureMode/G3/G3-ARLesson.unity
+    guid: 3fda14de057abc2499e05648df53a1ce
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5609d892399af8f49bcb79a4aa985baf, type: 2}

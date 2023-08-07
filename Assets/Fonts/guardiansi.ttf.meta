@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: bee9dde7ddc05e445888baa7f01a47d0
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Guardian Shadow Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 16882feb663e5c7409b5d3096a1416c7, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

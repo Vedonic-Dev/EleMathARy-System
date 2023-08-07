@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: a8f415f27157b154ba820faed8f5ae02
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Guardian Condensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: fbf06eef607e03545a3151848e4e0a94, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

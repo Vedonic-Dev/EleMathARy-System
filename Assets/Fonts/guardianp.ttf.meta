@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 840b50804b671b74eb699ac5e7704793
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Guardian Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: ecb01fd4474744045a69b4d40fb5f680, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "firebase_url": "null",
+    "project_number": "340977021821",
+    "project_id": "elemathary-f60bd",
+    "storage_bucket": "elemathary-f60bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340977021821:android:1390c202fa482c2b621214",
+        "android_client_info": {
+          "package_name": "com.TeamElite.EleMathARy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340977021821-3juh9ukgrr3ct4eooafgcmbh6mr8s2va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkyELfdpRysDU_ikjSQ9lX1aYKLI-JOAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340977021821-3juh9ukgrr3ct4eooafgcmbh6mr8s2va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

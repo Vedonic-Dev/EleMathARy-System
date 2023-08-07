@@ -1,0 +1,30 @@
+# Blender MTL File: 'mango_blender.blend'
+# Material Count: 2
+
+newmtl leaf
+Ns 159.999981
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Bump mango_textures\\leaf_normal.jpg
+map_Kd mango_textures\\leaf_base_color.jpg
+map_Ns mango_textures\\leaf_roughness.jpg
+refl mango_textures\\leaf_metallic.jpg
+
+newmtl mango
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump mango_textures\\mango_normal.jpg
+map_Kd mango_textures\\mango_base_color.jpg
+map_Ns mango_textures\\mango_roughness.jpg
+refl mango_textures\\mango_metallic.jpg

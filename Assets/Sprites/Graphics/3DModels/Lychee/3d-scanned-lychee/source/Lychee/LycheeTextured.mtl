@@ -1,0 +1,15 @@
+# File exported by CR Studio
+# Create time: 2022-12-28 22:25:11
+
+newmtl material_0
+Ns 1
+d 1 
+Tr 1 
+illum 1
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+Ke 0 0 0
+map_Ka LycheeTextured_0.jpg
+map_Kd LycheeTextured_0.jpg
+

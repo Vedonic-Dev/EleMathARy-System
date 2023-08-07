@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 8a85fac94aafa6a45a6c94f5026f6243
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Guardian Shadow
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b5b0578b3e8357a44b9d92e0473cb0a1, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
