@@ -24,13 +24,13 @@ EditorBuildSettings:
     path: Assets/Scenes/SimpleMode/SimpleSelectGrade.unity
     guid: d74fb49e932516b409ff943b2ca98783
   - enabled: 1
-    path: Assets/Scenes/SimpleMode/G1-Quiz.unity
+    path: Assets/Scenes/SimpleMode/G1/G1-Quiz.unity
     guid: f37f976c328715649ad2efc7789453ac
   - enabled: 1
-    path: Assets/Scenes/SimpleMode/G2-Quiz.unity
+    path: Assets/Scenes/SimpleMode/G2/G2-Quiz.unity
     guid: 77a57fc9ed40ec147b46f95ee9bc4f37
   - enabled: 1
-    path: Assets/Scenes/SimpleMode/G3-Quiz.unity
+    path: Assets/Scenes/SimpleMode/G3/G3-Quiz.unity
     guid: 549f964df1721c94683477a48b45f353
   - enabled: 1
     path: Assets/Scenes/Leaderboard.unity
@@ -89,5 +89,32 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AdventureMode/G3/G3-ARLesson.unity
     guid: 3fda14de057abc2499e05648df53a1ce
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G1/G1-SelectMode.unity
+    guid: 713656e76f0d60149a7acf399fcc0da0
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G1/G1-ChooseLesson.unity
+    guid: 7ea9db8cd7d50334d90b1be3ef8e228f
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G1/G1-Lesson.unity
+    guid: bdc835e3aee32e24ab86499868876cf9
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G2/G2-SelectMode.unity
+    guid: 5a773feadd88add4097806e67c94d855
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G2/G2-ChooseLesson.unity
+    guid: 4375b105f80df384d9e3c1cc21ae85b5
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G2/G2-Lesson.unity
+    guid: c8dc77793e277814fbe86febc901162f
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G3/G3-SelectMode.unity
+    guid: fd59db10c20d9fb4980b7717af220501
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G3/G3-ChooseLesson.unity
+    guid: 38d6f95e15ddc60429540fb9dcecb6c9
+  - enabled: 1
+    path: Assets/Scenes/SimpleMode/G3/G3-Lesson.unity
+    guid: e0f75614e7d01ba47a9ceb0631ef62bd
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5609d892399af8f49bcb79a4aa985baf, type: 2}

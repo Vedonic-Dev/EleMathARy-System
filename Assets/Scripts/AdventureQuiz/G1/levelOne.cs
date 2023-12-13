@@ -21,6 +21,7 @@ public class levelOne : MonoBehaviour
 
     public List<levelOneQuestionAndAnswers> QnA;
     public InputField[] answerFields;
+    public GameObject[] stars;
     public int currentQuestion;
 
     public GameObject Quizpanel;
@@ -113,7 +114,28 @@ public class levelOne : MonoBehaviour
         // Quizpanel.SetActive(false);
         GoPanel.SetActive(true);
         ScoreTxt.text = score + "/" + QnA.Count;
+        starsAcheived();
         AddScoreToLeaderboard();
+    }
+
+    public void starsAcheived()
+    {
+        float percentage = ((float)score / (float)QnA.Count) * 100f;
+        if (percentage >= 67f)
+        {
+            stars[0].SetActive(true);
+            stars[1].SetActive(true);
+            stars[2].SetActive(true);
+        }
+        else if (percentage >= 34)
+        {
+            stars[0].SetActive(true);
+            stars[1].SetActive(true);
+        }
+        else
+        {
+            stars[0].SetActive(true);
+        }
     }
 
     void AddScoreToLeaderboard()
@@ -130,11 +152,15 @@ public class levelOne : MonoBehaviour
                     var documentSnapshot = task.Result;
                     if (documentSnapshot.Exists)
                     {
-                        // Get the current user name from the user document
+                        // Get the current user name, grade, and section from the user document
                         string playerName = documentSnapshot.GetValue<string>("UserName");
+                        int playerGrade = documentSnapshot.GetValue<int>("UserGrade");
+                        string sectionId = documentSnapshot.GetValue<string>("UserSection");
 
-                        // Check if the player name already exists in the leaderboard
+                        // Check if the player name already exists in the leaderboard for the specific grade, section, and user ID
                         firestore.Collection("AdventureLeaderboard")
+                            .Document(playerGrade.ToString()) // Assuming "playerGrade" is an integer representing the grade
+                            .Collection(sectionId.ToString()) // Assuming "sectionId" is an integer representing the section ID
                             .WhereEqualTo("playerName", playerName)
                             .GetSnapshotAsync()
                             .ContinueWithOnMainThread(queryTask =>
@@ -167,15 +193,19 @@ public class levelOne : MonoBehaviour
                                     }
                                     else
                                     {
-                                        // Player name does not exist, add new entry to the leaderboard
+                                        // Player name does not exist, add a new entry to the leaderboard
                                         Dictionary<string, object> leaderboardEntry = new Dictionary<string, object>
                                         {
                                             { "score", score },
-                                            { "playerName", playerName }
+                                            { "playerName", playerName },
+                                            { "totalQuestions", QnA.Count}
                                         };
 
-                                        // Add the leaderboard entry to the "leaderboard" collection in Firestore
-                                        firestore.Collection("AdventureLeaderboard").AddAsync(leaderboardEntry)
+                                        // Add the leaderboard entry to the "AdventureLeaderboard" collection
+                                        firestore.Collection("AdventureLeaderboard")
+                                            .Document(playerGrade.ToString()) // Assuming "playerGrade" is an integer representing the grade
+                                            .Collection(sectionId.ToString())// Assuming "sectionId" is an integer representing the section ID
+                                            .AddAsync(leaderboardEntry)
                                             .ContinueWithOnMainThread(addTask =>
                                             {
                                                 if (addTask.IsCompleted)

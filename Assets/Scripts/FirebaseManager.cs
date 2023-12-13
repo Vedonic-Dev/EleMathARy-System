@@ -41,7 +41,7 @@ public class FirebaseManager : MonoBehaviour
     [SerializeField]
     private Text registerOutputText;
     [SerializeField]
-    private Dropdown teacherDropdown;
+    private InputField registerLRN;
     [Space(5f)]
 
     [Header("Output GameObject")]
@@ -55,12 +55,12 @@ public class FirebaseManager : MonoBehaviour
 
     private string uid;
 
-    private void Awake() 
+    private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         if (instance == null)
         {
-            instance = this;        
+            instance = this;
         }
         else if (instance != this)
         {
@@ -69,7 +69,8 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private void Start() {
+    private void Start()
+    {
         StartCoroutine(CheckAndFixDependencies());
     }
 
@@ -96,7 +97,7 @@ public class FirebaseManager : MonoBehaviour
         auth = FirebaseAuth.DefaultInstance;
         StartCoroutine(CheckAutoLogin());
 
-        auth.StateChanged +=  AuthStateChanged;
+        auth.StateChanged += AuthStateChanged;
         AuthStateChanged(this, null);
 
         db = FirebaseFirestore.DefaultInstance;
@@ -112,7 +113,7 @@ public class FirebaseManager : MonoBehaviour
             var reloadUserTask = user.ReloadAsync();
 
             yield return new WaitUntil(predicate: () => reloadUserTask.IsCompleted);
-            
+
             AutoLogin();
         }
         else
@@ -123,13 +124,15 @@ public class FirebaseManager : MonoBehaviour
 
     private void AutoLogin()
     {
-        if (user != null)
+        if (user != null && user.IsEmailVerified)
         {
             AuthUIManager.instance.LoadScene(3);
         }
         else
         {
             AuthUIManager.instance.LoginScreen();
+            loginOutputText.text = "Email not verified. Please verify your email.";
+            OutputGO();
         }
     }
 
@@ -169,8 +172,7 @@ public class FirebaseManager : MonoBehaviour
 
     public void RegisterButton()
     {
-        string dropdownValue = teacherDropdown.options[teacherDropdown.value].text;
-        StartCoroutine(RegisterLogic(registerUsername.text, registerEmail.text, registerPassword.text, registerConfirmPassword.text, dropdownValue));
+        StartCoroutine(RegisterLogic(registerUsername.text, registerEmail.text, registerPassword.text, registerConfirmPassword.text, _lrn: registerLRN.text));
     }
 
     public void ForgotPasswordButton()
@@ -219,12 +221,21 @@ public class FirebaseManager : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(1f);
-            AuthUIManager.instance.LoadScene(3);
+            var user = auth.CurrentUser;
+            if (user != null && user.IsEmailVerified)
+            {
+                yield return new WaitForSeconds(1f);
+                AuthUIManager.instance.LoadScene(3);
+            }
+            else
+            {
+                loginOutputText.text = "Email not verified. Please verify your email.";
+                OutputGO();
+            }
         }
     }
 
-    private IEnumerator RegisterLogic(string _username, string _email, string _password, string _confirmPassword, string _teacher)
+    private IEnumerator RegisterLogic(string _username, string _email, string _password, string _confirmPassword, string _lrn)
     {
         if (_username == "")
         {
@@ -236,9 +247,9 @@ public class FirebaseManager : MonoBehaviour
             registerOutputText.text = "Passwords Do Not Match!";
             OutputGO();
         }
-        else if (_teacher == "Teacher" || _teacher == "")
+        else if (_lrn == "")
         {
-            registerOutputText.text = "Please Pick a Teacher!";
+            registerOutputText.text = "Please Enter your LRN";
             OutputGO();
         }
         else
@@ -282,58 +293,83 @@ public class FirebaseManager : MonoBehaviour
             {
                 uid = registerTask.Result.User.UserId;
 
-                DocumentReference userRef = db.Collection("Users").Document(uid);
-
-                UserProfile profile = new UserProfile
+                // Send email verification
+                var user = auth.CurrentUser;
+                if (user != null)
                 {
-                    DisplayName = _username,
-                };
+                    var sendVerificationTask = user.SendEmailVerificationAsync();
+                    yield return new WaitUntil(predicate: () => sendVerificationTask.IsCompleted);
 
-                var defaultUserTask = user.UpdateUserProfileAsync(profile);
-
-                yield return new WaitUntil(predicate: () => defaultUserTask.IsCompleted);
-
-                if (defaultUserTask.Exception != null)
-                {
-                    user.DeleteAsync();
-                    FirebaseException firebaseException = (FirebaseException)defaultUserTask.Exception.GetBaseException();
-  
-                    AuthError error = (AuthError)firebaseException.ErrorCode;
-                    string output = "Unknown Error, Please Try Again!";
-
-                    switch (error)
+                    if (sendVerificationTask.Exception != null)
                     {
-                        case AuthError.Cancelled:
-                            output = "Update User Cancelled";
-                            break;
-
-                        case AuthError.SessionExpired:
-                            output = "Session Expired";
-                            break;
+                        string output = "Unknown Error, Please Try Again!";
+                        registerOutputText.text = output;
+                        OutputGO();
                     }
-                    registerOutputText.text = output;
-                    OutputGO();
-                }
-                else
-                {
-                    Debug.Log($"Firebase User Created Successfully: {user.DisplayName}");
-
-                    UserModel userInfo = new UserModel
+                    else
                     {
-                        UserID = uid,
-                        UserName = _username,
-                        UserEmail = _email,
+                        DocumentReference userRef = db.Collection("Users").Document(uid);
 
-                        //TODO: Give Profile Default Photo
-                        UserImage = "https://firebasestorage.googleapis.com/v0/b/elemathary-f60bd.appspot.com/o/displaypic.png?alt=media&token=1b004d83-b840-4244-b629-ba46af94b2a1",
-                        UserTeacher = _teacher
-                    };
+                        UserProfile profile = new UserProfile
+                        {
+                            DisplayName = _username,
+                        };
 
-                    userRef.SetAsync(userInfo).ContinueWithOnMainThread(task => 
-                    {
-                        Debug.Log("Updated User");
-                    });
-                    AuthUIManager.instance.LoadScene(3);
+                        var defaultUserTask = user.UpdateUserProfileAsync(profile);
+
+                        yield return new WaitUntil(predicate: () => defaultUserTask.IsCompleted);
+
+                        if (defaultUserTask.Exception != null)
+                        {
+                            user.DeleteAsync();
+                            FirebaseException firebaseException = (FirebaseException)defaultUserTask.Exception.GetBaseException();
+
+                            AuthError error = (AuthError)firebaseException.ErrorCode;
+                            string output = "Unknown Error, Please Try Again!";
+
+                            switch (error)
+                            {
+                                case AuthError.Cancelled:
+                                    output = "Update User Cancelled";
+                                    break;
+
+                                case AuthError.SessionExpired:
+                                    output = "Session Expired";
+                                    break;
+                            }
+                            registerOutputText.text = output;
+                            OutputGO();
+                        }
+                        else
+                        {
+                            Debug.Log($"Firebase User Created Successfully: {user.DisplayName}");
+
+                            UserModel userInfo = new UserModel
+                            {
+                                UserID = uid,
+                                UserLRN = _lrn,
+                                UserName = _username,
+                                UserEmail = _email,
+
+                                //TODO: Give Profile Default Photo
+                                UserImage = "https://firebasestorage.googleapis.com/v0/b/elemathary-f60bd.appspot.com/o/displaypic.png?alt=media&token=1b004d83-b840-4244-b629-ba46af94b2a1",
+                                UserGrade = 0,
+                                UserSection = "",
+                                UserTeacher = "",
+
+                            };
+
+                            userRef.SetAsync(userInfo).ContinueWithOnMainThread(task =>
+                            {
+                                Debug.Log("Updated User");
+                            });
+
+                            string output = "Account Successfully Created. Please Verify your Email.";
+                            registerOutputText.text = output;
+                            OutputGO();
+
+                        }
+                    }
                 }
             }
         }
@@ -373,8 +409,9 @@ public class FirebaseManager : MonoBehaviour
             OutputGO();
         }
     }
-    
-    public void OutputGO() {
+
+    public void OutputGO()
+    {
         outputGO.SetActive(true);
     }
 
@@ -391,13 +428,14 @@ public class FirebaseManager : MonoBehaviour
 
             try
             {
-                UserProfile _profile = new UserProfile{
+                UserProfile _profile = new UserProfile
+                {
                     PhotoUrl = new System.Uri(_newProfileUrl),
                 };
 
                 profile = _profile;
             }
-            catch 
+            catch
             {
                 // TODO: Add Lobby Manager "Ouput"
                 // LobbyManager.instance.Ouput("Error Fetching Image, Make Sure Your Link is Valid!");
@@ -426,7 +464,8 @@ public class FirebaseManager : MonoBehaviour
         return auth.CurrentUser.UserId;
     }
 
-    public void Logout(){
+    public void Logout()
+    {
         if (auth.CurrentUser != null)
         {
             auth.SignOut();

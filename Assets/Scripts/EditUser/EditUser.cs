@@ -19,7 +19,6 @@ public class EditUser : MonoBehaviour
     public Image userImage;
     public Image borderUserImage;
     public Button submitButton;
-    public Dropdown teacherDropdown;
 
     private FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -158,13 +157,11 @@ public class EditUser : MonoBehaviour
     private void UpdateUserProfile()
     {
         string newUsername = usernameText.text;
-        string dropdownValue = teacherDropdown.options[teacherDropdown.value].text;
 
         // Update the user document with the new username
         Dictionary<string, object> updates = new Dictionary<string, object>
         {
-            { "UserName", newUsername },
-            { "UserTeacher", dropdownValue }
+            { "UserName", newUsername }
         };
 
         userRef.UpdateAsync(updates).ContinueWithOnMainThread(task =>

@@ -16,5 +16,15 @@ public class UserModel
     public string UserImage { get; set; }
 
     [FirestoreProperty]
+    public string UserLRN { get; set; }
+
+    [FirestoreProperty]
+    public int UserGrade { get; set; }
+
+    [FirestoreProperty]
+    public string UserSection { get; set; }
+
+    [FirestoreProperty]
     public string UserTeacher { get; set; }
+
 }

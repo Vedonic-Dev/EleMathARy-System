@@ -19,6 +19,7 @@ public class QuizManager : MonoBehaviour
 
     public List<QuestionAndAnswers> QnA;
     public GameObject[] options;
+    public GameObject[] stars;
     public int currentQuestion;
 
     public GameObject Quizpanel;
@@ -74,13 +75,13 @@ public class QuizManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         if (firebaseManager == null)
-    {
-        Debug.LogError("FireBaseManager object not found in the scene.");
-    }
+        {
+            Debug.LogError("FireBaseManager object not found in the scene.");
+        }
 
         if (instance == null)
         {
-            instance = this;        
+            instance = this;
         }
         else if (instance != this)
         {
@@ -104,7 +105,9 @@ public class QuizManager : MonoBehaviour
     {
         Quizpanel.SetActive(false);
         GoPanel.SetActive(true);
-        ScoreTxt.text = score + "/" + 10;
+        // ScoreTxt.text = score + "/" + 10;
+        starsAcheived();
+        Debug.Log("gameover asdfasdjkfh");
         AddScoreToLeaderboard();
     }
 
@@ -122,11 +125,15 @@ public class QuizManager : MonoBehaviour
                     var documentSnapshot = task.Result;
                     if (documentSnapshot.Exists)
                     {
-                        // Get the current user name from the user document
+                        // Get the current user name, grade, and section from the user document
                         string playerName = documentSnapshot.GetValue<string>("UserName");
+                        int playerGrade = documentSnapshot.GetValue<int>("UserGrade");
+                        string sectionId = documentSnapshot.GetValue<string>("UserSection");
 
-                        // Check if the player name already exists in the leaderboard
+                        // Check if the player name already exists in the leaderboard for the specific grade, section, and user ID
                         firestore.Collection("SimpleLeaderboard")
+                            .Document(playerGrade.ToString()) // Assuming "playerGrade" is an integer representing the grade
+                            .Collection(sectionId.ToString()) // Assuming "sectionId" is an integer representing the section ID
                             .WhereEqualTo("playerName", playerName)
                             .GetSnapshotAsync()
                             .ContinueWithOnMainThread(queryTask =>
@@ -159,15 +166,18 @@ public class QuizManager : MonoBehaviour
                                     }
                                     else
                                     {
-                                        // Player name does not exist, add new entry to the leaderboard
+                                        // Player name does not exist, add a new entry to the leaderboard
                                         Dictionary<string, object> leaderboardEntry = new Dictionary<string, object>
                                         {
                                             { "score", score },
                                             { "playerName", playerName }
                                         };
 
-                                        // Add the leaderboard entry to the "leaderboard" collection in Firestore
-                                        firestore.Collection("SimpleLeaderboard").AddAsync(leaderboardEntry)
+                                        // Add the leaderboard entry to the "SimpleLeaderboard" collection
+                                        firestore.Collection("SimpleLeaderboard")
+                                            .Document(playerGrade.ToString()) // Assuming "playerGrade" is an integer representing the grade
+                                            .Collection(sectionId.ToString())// Assuming "sectionId" is an integer representing the section ID
+                                            .AddAsync(leaderboardEntry)
                                             .ContinueWithOnMainThread(addTask =>
                                             {
                                                 if (addTask.IsCompleted)
@@ -197,6 +207,26 @@ public class QuizManager : MonoBehaviour
                     Debug.LogError("Failed to retrieve current user document with error: " + task.Exception);
                 }
             });
+    }
+
+    public void starsAcheived()
+    {
+        float percentage = ((float)score / 10f) * 100f;
+        if (percentage >= 67f)
+        {
+            stars[0].SetActive(true);
+            stars[1].SetActive(true);
+            stars[2].SetActive(true);
+        }
+        else if (percentage >= 34)
+        {
+            stars[0].SetActive(true);
+            stars[1].SetActive(true);
+        }
+        else
+        {
+            stars[0].SetActive(true);
+        }
     }
 
     public void correct()
