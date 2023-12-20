@@ -34,6 +34,8 @@ public class levelOne : MonoBehaviour
     public Text ScoreTxt;
     [SerializeField] private Text CountdownTxt;
 
+    public AudioSource gameOverSound;
+
     public int score;
 
     private float countdownTime = 40f;
@@ -113,6 +115,14 @@ public class levelOne : MonoBehaviour
     {
         // Quizpanel.SetActive(false);
         GoPanel.SetActive(true);
+        if (gameOverSound != null)
+        {
+            gameOverSound.Play();
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource for game over sound is not assigned!");
+        }
         ScoreTxt.text = score + "/" + QnA.Count;
         starsAcheived();
         AddScoreToLeaderboard();

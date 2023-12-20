@@ -27,6 +27,10 @@ public class GradeChecker : MonoBehaviour
             button2.interactable = false;
             button3.interactable = false;
 
+            button1.gameObject.SetActive(false);
+            button2.gameObject.SetActive(false);
+            button3.gameObject.SetActive(false);
+
             FirebaseApp app = FirebaseApp.DefaultInstance;
             auth = FirebaseAuth.GetAuth(app);
             db = FirebaseFirestore.GetInstance(app);
@@ -63,17 +67,23 @@ public class GradeChecker : MonoBehaviour
                 {
                     case 1:
                         button1.interactable = true;
+                        button1.gameObject.SetActive(true);
                         break;
                     case 2:
                         button2.interactable = true;
+                        button2.gameObject.SetActive(true);
                         break;
                     case 3:
                         button3.interactable = true;
+                        button3.gameObject.SetActive(true);
                         break;
                     default:
                         button1.interactable = false;
                         button2.interactable = false;
                         button3.interactable = false;
+                        button1.gameObject.SetActive(false);
+                        button2.gameObject.SetActive(false);
+                        button3.gameObject.SetActive(false);
                         break;
                 }
             }

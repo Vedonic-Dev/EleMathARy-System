@@ -36,6 +36,8 @@ public class QuizManager : MonoBehaviour
     int totalQuestions = 10;
     public int score;
 
+    public AudioSource gameOverSound;
+
     private float countdownTime = 40f;
     private bool isCountdownActive = false;
     private TimeSpan timeSpan;
@@ -105,6 +107,14 @@ public class QuizManager : MonoBehaviour
     {
         Quizpanel.SetActive(false);
         GoPanel.SetActive(true);
+        if (gameOverSound != null)
+        {
+            gameOverSound.Play();
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource for game over sound is not assigned!");
+        }
         // ScoreTxt.text = score + "/" + 10;
         starsAcheived();
         Debug.Log("gameover asdfasdjkfh");
