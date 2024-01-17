@@ -252,6 +252,11 @@ public class FirebaseManager : MonoBehaviour
             registerOutputText.text = "Please Enter your LRN";
             OutputGO();
         }
+        else if (_lrn.Length < 12)
+        {
+            registerOutputText.text = "Please Enter a Valid LRN";
+            OutputGO();
+        }
         else
         {
             var registerTask = auth.CreateUserWithEmailAndPasswordAsync(_email, _password);
